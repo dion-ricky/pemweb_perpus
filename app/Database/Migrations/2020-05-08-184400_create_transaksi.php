@@ -16,7 +16,7 @@ class CreateTransaksi extends \CodeIgniter\Database\Migration {
                 'null'          => false
             ],
             'timestamp' => [
-                'type'          => 'timestamp',
+                'type'          => 'TIMESTAMP',
                 'null'          => false
             ]
         ]);
@@ -35,6 +35,7 @@ class CreateTransaksi extends \CodeIgniter\Database\Migration {
     {
         $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('transaksi');
+        $this->db->enableForeignKeyChecks();
     }
 
 }

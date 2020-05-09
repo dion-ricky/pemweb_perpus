@@ -11,9 +11,9 @@ class CreateBuku extends \CodeIgniter\Database\Migration {
                 'auto_increment'    => true,
                 'null'              => false
             ],
-            'barcode'       => [
+            'isbn'       => [
                 'type'              => 'VARCHAR',
-                'constraint'        => '45',
+                'constraint'        => '25',
                 'null'              => false
             ],
             'judul'         => [
@@ -26,7 +26,7 @@ class CreateBuku extends \CodeIgniter\Database\Migration {
                 'constraint'        => '4',
                 'null'              => true
             ],
-            'pengarang'     => [
+            'penulis'     => [
                 'type'              => 'VARCHAR',
                 'constraint'        => '255',
                 'null'              => true,
@@ -50,5 +50,6 @@ class CreateBuku extends \CodeIgniter\Database\Migration {
     {   
         $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('buku');
+        $this->db->enableForeignKeyChecks();
     }
 }

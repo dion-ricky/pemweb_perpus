@@ -40,5 +40,7 @@ class CreateUser extends \CodeIgniter\Database\Migration {
     {
         $this->db->disableForeignKeyChecks();
         $this->forge->dropTable('user');
+        $this->db->enableForeignKeyChecks();
+
     }
 }
