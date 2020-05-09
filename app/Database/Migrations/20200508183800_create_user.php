@@ -39,6 +39,6 @@ class CreateUser extends \CodeIgniter\Database\Migration {
     public function down()
     {
         $this->db->disableForeignKeyChecks();
-        $this->forge-dropTable('user');
+        $this->forge->dropTable('user');
     }
 }
