@@ -5,28 +5,37 @@ class CreateTransaksi extends \CodeIgniter\Database\Migration {
     public function up()
     {
         $this->forge->addField([
+            'id_transaksi'	=> [
+				'type'				=> 'SMALLINT',
+				'auto_increment'	=> true,
+				'first'				=> true,
+				'null'				=> false
+			],
+			'jenis'			=> [
+				'type'				=> 'CHAR',
+				'constraint'		=> '1',
+				'null'				=> false
+			],
+			'tanggal'	=> [
+				'type'              => 'DATE',
+				'null'              => false
+            ],
             'id_user'   => [
-                'type'          => 'INT',
-                'constraint'    => '45',
-                'null'          => false
+                'type'              => 'INT',
+                'constraint'        => '45',
+                'null'              => false
             ],
             'id_buku'   => [
-                'type'          => 'INT',
-                'constraint'    => '30',
-                'null'          => false
-            ],
-            'timestamp' => [
-                'type'          => 'TIMESTAMP',
-                'null'          => false
+                'type'              => 'INT',
+                'constraint'        => '30',
+                'null'              => false
             ]
         ]);
         
         $this->forge->addForeignKey('id_user', 'user', 'id_user');
         $this->forge->addForeignKey('id_buku', 'buku', 'id_buku');
 
-        $this->forge->addPrimaryKey('id_user');
-        $this->forge->addPrimaryKey('id_buku');
-        $this->forge->addPrimaryKey('timestamp');
+        $this->forge->addPrimaryKey('id_transaksi');
         
         $this->forge->createTable('transaksi');
     }
