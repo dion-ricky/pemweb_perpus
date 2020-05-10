@@ -13,7 +13,11 @@ class Home extends BaseController
 	}
 	
 	public function test() {
-		$t = $this->session->get('sub');
-		echo $t;
+		$userModel = new \App\Models\UserModel();
+
+		print_r($userModel->findAll());
+
+		// print_r( $userModel->getAll()->getResult() );
+
 	}
 }
