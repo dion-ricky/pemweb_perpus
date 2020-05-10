@@ -9,6 +9,11 @@ class Home extends BaseController
 
 	//--------------------------------------------------------------------
 	public function coba() {
-        return view('welcome_message');
-    }
+        return view('carousel');
+	}
+	
+	public function test() {
+		$t = $this->session->get('sub');
+		echo $t;
+	}
 }
