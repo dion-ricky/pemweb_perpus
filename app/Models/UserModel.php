@@ -16,4 +16,8 @@ class UserModel extends Model {
     public function checkError() {
         return $this->db->error();
     }
+
+    public function getAll() {
+        return $this->db->query("SELECT * FROM user");
+    }
 }
