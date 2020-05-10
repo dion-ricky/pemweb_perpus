@@ -29,9 +29,9 @@ class Auth extends BaseController {
         ];
 
         $userModel = new \App\Models\UserModel();
-        // $userModel->insert($data);
+        $userModel->insert($data);
 
-        print_r($userModel->findAll());
+        // print_r($userModel->findAll());
 
         // print_r($userModel->checkError());
         // print_r($data);

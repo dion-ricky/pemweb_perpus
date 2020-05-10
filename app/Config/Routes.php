@@ -33,6 +33,7 @@ $routes->setAutoRoute(false);
 $routes->post('/auth/login', 'Auth::login');
 $routes->post('/auth/register', 'Auth::register');
 $routes->get('/auth/logout', 'Auth::logout');
+$routes->get('/test', 'Home::test');
 $routes->get('(:any)', 'Pages::view/$1');
 
 /**
