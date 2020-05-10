@@ -19,5 +19,7 @@ class Home extends BaseController
 
 		// print_r( $userModel->getAll()->getResult() );
 
+		// echo $userModel->checkError();
+
 	}
 }
