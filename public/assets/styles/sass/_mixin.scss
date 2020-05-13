@@ -1,0 +1,62 @@
+@mixin surface-bg-color($elevation) {
+    background-color: elevation-color($elevation);
+}
+
+@function elevation-color($elevation) {
+    $color: #121212;
+
+    @if $elevation == 0 {
+        $color : #121212;
+    }
+    @else if $elevation == 1 {
+        $color : #1e1e1e;
+    }
+    @else if $elevation == 2 {
+        $color : #222222;
+    }
+    @else if $elevation == 3 {
+        $color : #252525;
+    }
+    @else if $elevation == 4 {
+        $color : #272727;
+    }
+    @else if $elevation == 5 {
+        $color : #2c2c2c;
+    }
+    @else if $elevation == 6 {
+        $color : #2e2e2e;
+    }
+    @else if $elevation == 7 {
+        $color : #323232;
+    }
+    @else if $elevation == 8 {
+        $color : #363636;
+    }
+    @else if $elevation == 9 {
+        $color : #383838;
+    }
+
+    @return $color;
+}
+
+@function color-set-opacity($color, $opacity) {
+    @return rgba($color, $opacity);
+}
+
+@mixin margin($top:0, $right:0, $bottom:0, $left:0) {
+    @if $top > 0 {
+        margin-top: calc(#{$top * 1rem});
+    }
+    
+    @if $right > 0 {
+        margin-right: calc(#{$right * 1rem});
+    }
+
+    @if $bottom > 0 {
+        margin-bottom: calc(#{$bottom * 1rem});
+    }
+
+    @if $left > 0 {
+        margin-left: calc(#{$left * 1rem});
+    }
+}

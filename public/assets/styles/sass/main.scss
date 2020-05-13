@@ -1,0 +1,252 @@
+@use 'colors';
+@use 'fonts';
+@use 'mixin';
+@use 'shared';
+@use 'mp';
+
+html, body {
+    margin  : 0;
+    padding : 0;
+    height  : 100%;
+}
+
+body {
+    @extend %open-sans;
+    background-color    : colors.$base-bg;
+    color               : colors.$base-text;
+}
+
+input, button {
+    @extend %open-sans;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+.input-group {
+    @extend %flex;
+    flex-direction: column;
+
+    p.input-label {
+        font-size       : .8rem;
+        margin-left     : .3rem;
+        margin-top      : .5rem;
+        margin-bottom   : .2rem;
+        color           : rgba(255, 255, 255, .5);
+    }
+}
+
+input[type=text], input[type=email], input[type=password] {
+    @extend %input-text;
+    transition: background-color 0.1s ease-out;
+
+    &:hover, &:focus-within {
+        @extend %input-text-hover;
+    }
+    
+    &.input-invalid {
+        background-color: #420909;
+        border: 2px solid #580c0c;
+    }
+
+    &:-moz-read-only {
+        color   : mixin.color-set-opacity(colors.$base-text, .3);
+        cursor  : default;
+        
+        &:hover, &:focus-within {
+            @include mixin.surface-bg-color(5);
+        }
+    }
+
+    &:read-only {
+        color : mixin.color-set-opacity(colors.$base-text, .3);
+        cursor  : default;
+        
+        &:hover, &:focus-within {
+            @include mixin.surface-bg-color(5);
+        }
+    }
+}
+
+input:invalid {
+    box-shadow: none;
+}
+
+button.btn {
+    max-width       : max-content;
+    padding         : .5rem 1rem;
+    margin-top      : 2rem;
+    font-size       : 1rem;
+    border          : none;
+    border-radius   : 3px;
+    transition      : background-color .1s ease-out;
+    color           : colors.$base-text;
+
+    // Default bg-color
+    background-color    : mixin.elevation-color(8);
+
+    &:hover {
+        background-color: mixin.elevation-color(7);
+    }
+
+    &:active {
+        background-color: mixin.elevation-color(6);
+    }
+    
+    // Primary color
+    &.btn-primary {
+        background-color    : colors.$primary-dark;
+    
+        &:hover {
+            background-color: mixin.color-set-opacity(colors.$primary-dark, .7);
+        }
+    
+        &:active {
+            background-color: mixin.color-set-opacity(colors.$primary-dark, .5);
+        }
+    }
+
+    &.btn-danger {
+        background-color    : #a80c0c;
+
+        &:hover {
+            background-color: mixin.color-set-opacity(#a80c0c, .7);
+        }
+    
+        &:active {
+            background-color: mixin.color-set-opacity(#a80c0c, .5);
+        }
+    }
+}
+
+button::-moz-focus-inner {
+    border: 0;
+}
+
+
+.v-divider {
+    @include mixin.surface-bg-color(4);
+    width: 2px;
+}
+
+.full-height {
+    min-height  : 100vh;
+}
+
+.max-width-medium {
+    max-width: 60vw;
+}
+
+.h-center {
+    margin-left : auto;
+    margin-right: auto;
+}
+
+.child-v-center {
+    @extend %flex;
+    align-items : center;
+}
+
+.card {
+    @include mixin.surface-bg-color(1);
+}
+
+.flex {
+    @extend %flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.text-muted {
+    font-size   : .8rem;
+    color       : rgba(255, 255, 255, .5);
+}
+
+nav {
+    @include mixin.surface-bg-color(3);
+    @extend %flex;
+    box-sizing      : border-box;
+    align-items     : center;
+    justify-content : space-between;
+    padding         : 0 3rem;
+    width           : 100%;
+    z-index         : 99;
+
+    .nav-push-left {
+        @extend %flex;
+        align-items : center;
+    }
+
+    .nav-push-right {
+        @extend %flex;
+        align-items : center;
+    }
+
+    .nav-icon {
+        font-size: 2.5rem;
+    }
+
+    .nav-brand {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    .nav-search {
+        input {
+            background-color    : mixin.elevation-color(7);
+            border-color        : mixin.elevation-color(7);
+            font-size           : 1.1rem;
+        }
+
+        .btn {
+            height      : 100%;
+            margin-top  : 0;
+            max-width   : none;
+        }
+    }
+
+    .nav-user-detail {
+        @extend %flex;
+        align-items: center;
+        .nav-user-photo {
+            max-width: 2.5rem;
+            border-radius: 50%;
+        }
+    }
+
+    .nav-btn-logout {
+        margin-top: 0;
+        max-width: none;
+    }
+}
+
+nav.fixed-topnav {
+    position    : fixed;
+    height      : 75px;
+}
+
+main {
+    padding-top: 7rem;
+    margin: 0 3rem;
+}
+
+footer {
+    @include mixin.surface-bg-color(2);
+    padding: 3rem 3rem;
+}
+
+.no-selection {
+    cursor: default;
+}
+
+.no-selection::selection {
+    background-color: inherit;
+    color: inherit;
+}

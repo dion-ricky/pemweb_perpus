@@ -17,7 +17,7 @@ class UserModel extends Model {
         return $this->db->error();
     }
 
-    public function getAll() {
-        return $this->db->query("SELECT * FROM user");
+    public function affectedRows() {
+        return $this->db->affectedRows();
     }
 }

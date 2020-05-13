@@ -1,0 +1,7 @@
+@use 'mixin';
+@use 'shared';
+
+.login-card {
+    min-height: 250px;
+    padding: 2rem 3rem;
+}

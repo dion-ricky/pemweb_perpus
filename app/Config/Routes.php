@@ -30,11 +30,24 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('/', 'Home::index');
+
+$routes->get('/buku/(:segment)', 'Buku::detail/$1');
+$routes->get('/buku/baru', 'Buku::baru');
+$routes->post('/buku/baru', 'Buku::tambahBuku');
+
+$routes->get('/user/profile', 'User::profile');
+$routes->post('/user/profile', 'User::updateGeneral');
+$routes->get('/user/profile/changepass', 'User::changePass');
+$routes->post('/user/profile/changepass', 'User::updatePassword');
+
+$routes->get('/photo/profile', 'Photo::profile');
+
 $routes->post('/auth/login', 'Auth::login');
 $routes->post('/auth/register', 'Auth::register');
 $routes->get('/auth/logout', 'Auth::logout');
-$routes->get('/test', 'Home::test');
-$routes->get('(:any)', 'Pages::view/$1');
+
+// $routes->get('(:any)', 'Pages::view/$1');
 
 /**
  * --------------------------------------------------------------------

@@ -1,0 +1,19 @@
+@use 'mixin';
+@use 'colors';
+
+%flex {
+    display : flex;
+}
+
+%input-text {
+    font-size       : 1.3rem;
+    border          : 2px solid mixin.elevation-color(5);
+    background-color: mixin.elevation-color(5);
+    color           : mixin.color-set-opacity(colors.$base-text, .9);
+    padding         : .3rem .5rem .3rem .5rem;
+    border-radius   : 5px;
+}
+
+%input-text-hover {
+    @include mixin.surface-bg-color(0);
+}

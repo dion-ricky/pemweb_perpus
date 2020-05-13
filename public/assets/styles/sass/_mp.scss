@@ -1,0 +1,65 @@
+@use 'mixin';
+
+.mt-auto {
+    margin-top: auto !important;
+}
+
+.m-1 {
+    @include mixin.margin(1,1,1,1);
+}
+
+.mt-1 {
+    @include mixin.margin(1);
+}
+
+.mr-1 {
+    @include mixin.margin(0,1);
+}
+
+.mb-1 {
+    @include mixin.margin(0,0,1);
+}
+
+.ml-1 {
+    @include mixin.margin(0,0,0,1);
+}
+
+.m-2 {
+    @include mixin.margin(2,2,2,2);
+}
+
+.mt-2 {
+    @include mixin.margin(2);
+}
+
+.mr-2 {
+    @include mixin.margin(0,2);
+}
+
+.mb-2 {
+    @include mixin.margin(0,0,2);
+}
+
+.ml-2 {
+    @include mixin.margin(0,0,0,2);
+}
+
+.m-3 {
+    @include mixin.margin(3,3,3,3);
+}
+
+.mt-3 {
+    @include mixin.margin(3);
+}
+
+.mr-3 {
+    @include mixin.margin(0,3);
+}
+
+.mb-3 {
+    @include mixin.margin(0,0,3);
+}
+
+.ml-3 {
+    @include mixin.margin(0,0,0,3);
+}
