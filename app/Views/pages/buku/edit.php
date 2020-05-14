@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Buku</title>
+    <title>Edit Buku</title>
     <link rel="stylesheet" href="/assets/styles/main.css">
     <link rel="stylesheet" href="/assets/styles/buku.css">
 </head>
@@ -38,25 +38,25 @@
                 }
             ?>
             <form action="" enctype="multipart/form-data" method="post">
-                <h1>Tambah Buku</h1>
+                <h1>Edit Buku</h1>
                 <div class="input-group">
                     <p class="input-label">Cover</p>
-                    <img src="/buku/cover/0" alt="" class="book-nocover mb-1"> 
+                    <img src="/buku/cover/<?=$buku['id_buku'] ?>" alt="" class="book-nocover mb-1"> 
                     <input type="file" name="cover" id="">
                     <p class="input-label">ISBN</p>
-                    <input type="text" name="isbn" id="" required>
+                    <input type="text" name="isbn" id="" value="<?=$buku['isbn'] ?>" required>
                     <p class="input-label">Judul</p>
-                    <input type="text" name="judul" id="" required>
+                    <input type="text" name="judul" id="" value="<?=$buku['judul'] ?>" required>
                     <p class="input-label">Tahun Terbit</p>
-                    <input type="text" name="tahun_terbit" id="">
+                    <input type="text" name="tahun_terbit" value="<?=$buku['tahun_terbit'] ?>" id="">
                     <p class="input-label">Penulis</p>
-                    <input type="text" name="penulis" id="">
+                    <input type="text" name="penulis" value="<?=$buku['penulis'] ?>" id="">
                     <p class="input-label">Penerbit</p>
-                    <input type="text" name="penerbit" id="">
+                    <input type="text" name="penerbit" value="<?=$buku['penerbit'] ?>" id="">
                     <p class="input-label">Sinopsis</p>
-                    <textarea name="sinopsis" id=""  rows="3" spellcheck="false" style="resize: vertical"></textarea>
+                    <textarea name="sinopsis" id="" rows="3" spellcheck="false" style="resize: vertical"><?=$buku['sinopsis'] ?></textarea>
                     <p class="input-label">Cetakan</p>
-                    <input type="text" name="cetakan" id="">
+                    <input type="text" name="cetakan" id="" value="<?=$buku['cetakan'] ?>">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

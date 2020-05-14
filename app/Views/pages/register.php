@@ -10,13 +10,37 @@
 </head>
 <body class="child-v-center full-height">
     <div class="h-center max-width-medium">
+        <?php
+            if ($errors != null) {
+        ?>
+        
+        <div class="notify notify-error">
+            <span class="notify-message"><?=$errors['message'] ?></span>
+            <span class="notify-code"><?=$errors['code'] ?></span>
+        </div>
+        
+        <?php
+            }
+        ?>
+
+        <?php
+            if ($success != null) {
+        ?>
+
+        <div class="notify notify-success">
+            <span class="notify-message"><?=$success['message'] ?></span>
+        </div>
+        
+        <?php
+            }
+        ?>
         <div class="flex card login-card">
             <div class="login-img child-v-center">
                 <img src="/assets/images/forms_78yw.svg" alt="" srcset="" style="max-width: 250px">
             </div>
             <div class="v-divider ml-1 mr-1"></div>
             <div class="login-form">
-                <form action="auth/register" method="post">
+                <form action="" method="post">
                     <h1 style="margin-top: 0">Please fill in the forms</h1>
                     <div class="input-group">
                         <p class="input-label">Nama</p>
@@ -27,7 +51,7 @@
                         <input type="password" name="password" id="" style="min-width: 400px" required>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                         <span class="text-muted">
-                            Already have an account? <a href="/login">Sign in</a>
+                            Already have an account? <a href="/auth/login">Sign in</a>
                         </span>
                     </div>
                 </form>

@@ -38,6 +38,7 @@
   border-radius: 7px;
   display: grid;
   grid-template-columns: 150px 1fr;
+  grid-template-rows: 220px 1fr;
   column-gap: 1rem;
   row-gap: 0.5rem;
 }
@@ -67,6 +68,12 @@
 .book-item .book-details table {
   border-collapse: separate;
   border-spacing: 1rem 0;
+}
+.book-item .book-details table tr td {
+  vertical-align: top;
+}
+.book-item .book-details table tr td:nth-child(1) {
+  white-space: nowrap;
 }
 .book-item .book-description {
   grid-column-start: 1;

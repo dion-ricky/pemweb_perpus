@@ -13,13 +13,12 @@ class Auth extends BaseController {
             return Auth::redirector($redirect_to);
         }
 
-        return Auth::redirector('/login');
+        return $this->showLogin(['errors' => ['code' => '11A', 'message' => 'Email atau password salah!']]);
     }
     
     private function selfLogin($email, $password, $set_session=true) {
-        // TODO: verify
         $userModel = new \App\Models\UserModel();
-        $user = $userModel->where('email', $email)->first(); // Need to be tested
+        $user = $userModel->where('email', $email)->first();
         
         if ( !password_verify($password, $user['password']) ) {
             return false;
@@ -51,7 +50,7 @@ class Auth extends BaseController {
         }
 
         $this->session->remove("sub");
-        return Auth::redirector('/login');
+        return Auth::redirector('/auth/login');
     }
 
     public function register() {
@@ -72,10 +71,11 @@ class Auth extends BaseController {
         $userModel->insert($data);
 
         if ($userModel->affectedRows() > 0) {
-            return Auth::redirector('/login');
+            return Auth::redirector('/auth/login');
         }
 
-        return Auth::redirector('/register');
+        // error
+        return $this->showRegister(['errors' => $userModel->error()]);
     }
 
     private function generateNoAnggota() {
@@ -94,8 +94,34 @@ class Auth extends BaseController {
 
         $path = $uri->getPath();
 
-        return redirect()->to('./'.$path);
+        echo "<script>";
+        echo "window.location.replace('/$path')";
+        echo "</script>";
+
+        // return redirect()->to('./'.$path);
     }
 
-   
+    public function showLogin($additional_data = false) {
+        $data = [
+            'sub' => $this->session->get('sub'),
+        ];
+
+        if ($additional_data) {
+            $data = array_merge($additional_data, $data);
+        }
+
+        return view('pages/login', $data);
+    }
+
+    public function showRegister($additional_data = false) {
+        $data = [
+            'sub' => $this->session->get('sub')
+        ];
+
+        if ($additional_data) {
+            $data = array_merge($additional_data, $data);
+        }
+
+        return view('pages/register', $data);
+    }
 }

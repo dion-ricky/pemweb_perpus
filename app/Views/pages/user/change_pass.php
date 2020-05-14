@@ -12,11 +12,31 @@
         <?php require __DIR__ . '/../templates/fixed-topnav.php'; ?>
     </header>
     <main>
-        <?php
-            // print_r($data);
-            // data['errors']
-        ?>
         <div class="user-form-edit mb-3">
+            <?php
+                if ($errors != null) {
+            ?>
+            
+            <div class="notify notify-error">
+                <span class="notify-message"><?=$errors['message'] ?></span>
+                <span class="notify-code"><?=$errors['code'] ?></span>
+            </div>
+            
+            <?php
+                }
+            ?>
+
+            <?php
+                if ($success != null) {
+            ?>
+
+            <div class="notify notify-success">
+                <span class="notify-message"><?=$success['message'] ?></span>
+            </div>
+            
+            <?php
+                }
+            ?>
             <form action="" method="post">
                 <h1>Ubah Password</h1>
                 <div class="input-group">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perpustakaan Online</title>
+  <title>Cari Buku</title>
   <link rel="stylesheet" href="/assets/styles/main.css">
   <link rel="stylesheet" href="/assets/styles/home.css">
 </head>
@@ -14,7 +14,7 @@
   <main>
   <div class="latest-release mb-3">
     <div class="book-group-header">
-      <h1>Buku Terbaru</h1>
+      <h1>Hasil Pencarian</h1>
       <div class="book-genre-list">
         <a href="" class="selected">Semua</a>
         <a href="">Horror</a>

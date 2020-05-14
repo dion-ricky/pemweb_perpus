@@ -45,18 +45,18 @@
 
 @mixin margin($top:0, $right:0, $bottom:0, $left:0) {
     @if $top > 0 {
-        margin-top: calc(#{$top * 1rem});
+        margin-top: #{$top * 1rem};
     }
     
     @if $right > 0 {
-        margin-right: calc(#{$right * 1rem});
+        margin-right: #{$right * 1rem};
     }
 
     @if $bottom > 0 {
-        margin-bottom: calc(#{$bottom * 1rem});
+        margin-bottom: #{$bottom * 1rem};
     }
 
     @if $left > 0 {
-        margin-left: calc(#{$left * 1rem});
+        margin-left: #{$left * 1rem};
     }
 }

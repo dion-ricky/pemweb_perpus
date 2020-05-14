@@ -32,9 +32,19 @@ $routes->setAutoRoute(false);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->get('/buku/(:segment)', 'Buku::detail/$1');
+$routes->get('/search', 'Search::search');
+
 $routes->get('/buku/baru', 'Buku::baru');
 $routes->post('/buku/baru', 'Buku::tambahBuku');
+$routes->get('/buku/ubah/(:segment)', 'Buku::edit/$1');
+$routes->post('/buku/ubah/(:segment)', 'Buku::editBuku/$1');
+$routes->get('/buku/pinjam/(:segment)', 'Buku::pinjam/$1');
+$routes->post('/buku/pinjam/(:segment)', 'Buku::pinjamBuku/$1');
+$routes->get('/buku/kembali', 'Buku::kembali/$1');
+$routes->get('/buku/kembali/confirm/(:segment)', 'Buku::kembaliConfirm/$1');
+$routes->post('/buku/kembali/(:segment)', 'Buku::kembaliBuku/$1');
+$routes->get('/buku/(:segment)', 'Buku::detail/$1');
+$routes->get('/buku/cover/(:segment)', 'Buku::coverBuku/$1');
 
 $routes->get('/user/profile', 'User::profile');
 $routes->post('/user/profile', 'User::updateGeneral');
@@ -43,7 +53,9 @@ $routes->post('/user/profile/changepass', 'User::updatePassword');
 
 $routes->get('/photo/profile', 'Photo::profile');
 
+$routes->get('/auth/login', 'Auth::showLogin');
 $routes->post('/auth/login', 'Auth::login');
+$routes->get('/auth/register', 'Auth::showRegister');
 $routes->post('/auth/register', 'Auth::register');
 $routes->get('/auth/logout', 'Auth::logout');
 

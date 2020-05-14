@@ -9,8 +9,6 @@ class Photo extends BaseController {
         $file = $file_handle->openFile('r');
         $avatar = $file->fread($file->getSize());
 
-        // echo $avatar;
-        
         if ($this->session->get("sub") !== null) {
             $email      = $this->session->get('sub')['email'];
             $userModel  = new \App\Models\UserModel();

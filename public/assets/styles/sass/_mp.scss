@@ -4,6 +4,26 @@
     margin-top: auto !important;
 }
 
+.m-05 {
+    @include mixin.margin(.5,.5,.5,.5);
+}
+
+.mt-05 {
+    @include mixin.margin(.5);
+}
+
+.mr-05 {
+    @include mixin.margin(0,.5);
+}
+
+.mb-05 {
+    @include mixin.margin(0,0,.5);
+}
+
+.ml-05 {
+    @include mixin.margin(0,0,0,.5);
+}
+
 .m-1 {
     @include mixin.margin(1,1,1,1);
 }
