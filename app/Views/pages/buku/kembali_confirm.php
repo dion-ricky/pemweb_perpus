@@ -42,7 +42,7 @@
                             <p class="input-label">Tanggal Peminjaman</p>
                             <input type="date" name="" id="" value="<?=$transaksi['tanggal'] ?>" readonly>
                             <p class="input-label">Tanggal Pengembalian</p>
-                            <input type="date" name="pengembalian_date" id="" value="<?php echo date('Y-m-d'); ?>">
+                            <input type="date" name="pengembalian_date" id="" value="<?php echo date('Y-m-d'); ?>" required>
                             <button type="submit" class="btn btn-primary">Kembalikan</button>
                         </div>
                     </form>

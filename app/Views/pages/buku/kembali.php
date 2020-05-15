@@ -12,8 +12,31 @@
         <?php require __DIR__ . '/../templates/fixed-topnav.php'; ?>
     </header>
     <main>
-        <?php //print_r($list_buku); ?>
         <div class="book-form mb-3">
+            <?php
+                if ($errors != null) {
+            ?>
+            
+            <div class="notify notify-error">
+                <span class="notify-message"><?=$errors['message'] ?></span>
+                <span class="notify-code"><?=$errors['code'] ?></span>
+            </div>
+            
+            <?php
+                }
+            ?>
+
+            <?php
+                if ($success != null) {
+            ?>
+
+            <div class="notify notify-success">
+                <span class="notify-message"><?=$success['message'] ?></span>
+            </div>
+            
+            <?php
+                }
+            ?>
             <h1>Pengembalian Buku</h1>
             <form action="" method="get">
                 <div class="input-group">

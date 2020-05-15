@@ -128,7 +128,7 @@ class Buku extends BaseController {
         return $this->edit($id_buku, ['errors' => $bukuModel->checkError()]);
     }
 
-    public function detail($id_buku) {
+    public function detail($id_buku, $additional_data=false) {
         $bukuModel = new \App\Models\BukuModel();
         $buku = $bukuModel->find($id_buku);
 
@@ -141,6 +141,10 @@ class Buku extends BaseController {
             'buku' => $buku
         ];
 
+        if ($additional_data) {
+            $data = array_merge($additional_data, $data);
+        }
+
         return view('pages/buku/detail', $data);
     }
 
@@ -151,7 +155,7 @@ class Buku extends BaseController {
 
         $bukuModel = new \App\Models\BukuModel();
         $buku = $bukuModel->find($id_buku);
-
+        
         if ($buku['status'] != 0) {
             return Auth::redirector("/buku/$id_buku");
         }
@@ -160,10 +164,11 @@ class Buku extends BaseController {
             'sub' => $this->session->get('sub'),
             'buku' => $buku
         ];
-
+        
         if ($additional_data) {
             $data = array_merge($additional_data, $data);
         }
+
 
         return view('pages/buku/pinjam', $data);
     }
@@ -190,26 +195,28 @@ class Buku extends BaseController {
         $transaksiModel = new \App\Models\TransaksiModel();
         $transaksiModel->insert($data);
 
-        $bukuModel = new \App\Models\BukuModel();
+        if ($transaksiModel->affectedRows() > 0) {
+            $bukuModel = new \App\Models\BukuModel();
+    
+            $data_buku = [
+                'status' => 1
+            ];
+    
+            $bukuModel->update($id_buku, $data_buku);
 
-        $data_buku = [
-            'status' => 1
-        ];
-
-        $bukuModel->update($id_buku, $data_buku);
-
-        if ($transaksiModel->affectedRows() > 0 && $bukuModel->affectedRows() > 0) {
-            return $this->pinjam($id_buku, ['success' => ['message' => 'Berhasil meminjam buku']]);
+            if ($bukuModel->affectedRows() > 0) {
+                return $this->pinjam($id_buku, ['success' => ['message' => 'Berhasil meminjam buku']]);
+            } else {
+                // error on buku
+                return $this->pinjam($id_buku, ['errors' => $bukuModel->checkError()]);
+            }
         }
-        // error
-        else if ($bukuModel->affectedRows() > 0) {
-            return $this->pinjam($id_buku, ['errors' => $transaksiModel->checkError()]);
-        } else {
-            return $this->pinjam($id_buku, ['errors' => $bukuModel->checkError()]);
-        }
+        
+        // error on trx
+        return $this->pinjam($id_buku, ['errors' => $transaksiModel->checkError()]);
     }
 
-    public function kembali($additional_data) {
+    public function kembali($additional_data=false) {
         if ($this->session->get('sub') == null || $this->session->get('sub')['level'] != 1) {
             return Auth::redirector("/");
         }
@@ -232,9 +239,12 @@ class Buku extends BaseController {
         $data = [
             'sub' => $this->session->get('sub'),
             'list_buku' => $list_buku_dipinjam,
-            'email' => $email,
-            $additional_data
+            'email' => $email
         ];
+
+        if ($additional_data) {
+            $data = array_merge($additional_data, $data);
+        }
 
         return view('pages/buku/kembali', $data);
     }
@@ -247,6 +257,10 @@ class Buku extends BaseController {
         $transaksiModel = new \App\Models\TransaksiModel();
         $transaksi = $transaksiModel->getDetailTransaksi($id_transaksi)->getResultArray()[0];
 
+        if ($transaksi == null) {
+            return Auth::redirector('/buku/kembali');
+        }
+
         $data = [
             'sub' => $this->session->get('sub'),
             'transaksi' => $transaksi
@@ -256,8 +270,16 @@ class Buku extends BaseController {
     }
 
     public function kembaliBuku($id_transaksi) {
+        if ($this->session->get('sub') == null || $this->session->get('sub')['level'] != 1) {
+            return Auth::redirector("/");
+        }
+
         $transaksiModel = new \App\Models\TransaksiModel();
         $transaksi = $transaksiModel->getDetailTransaksi($id_transaksi)->getResultArray()[0];
+
+        if ($transaksi == null) {
+            return Auth::redirector('/buku/kembali');
+        }
 
         $tanggal = $this->request->getPost('pengembalian_date');
 
@@ -279,11 +301,15 @@ class Buku extends BaseController {
             
             $bukuModel->update($transaksi['id_buku'], $data_buku);
             
-            return Auth::redirector('/');
+            if ($bukuModel->affectedRows() > 0) {
+                return Auth::redirector('/');
+            } else {
+                return view('pages/buku/kembali', ['errors' => $bukuModel->error()]);
+            }
         }
-
+        
         // error
-        // return view('pages/buku/kembali', ['errors' => $transaksiModel->error()]);
+        return view('pages/buku/kembali', ['errors' => $transaksiModel->error()]);
     }
 
     public function coverBuku($id_buku) {

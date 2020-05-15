@@ -94,11 +94,7 @@ class Auth extends BaseController {
 
         $path = $uri->getPath();
 
-        echo "<script>";
-        echo "window.location.replace('/$path')";
-        echo "</script>";
-
-        // return redirect()->to('./'.$path);
+        return redirect()->to('./'.$path);
     }
 
     public function showLogin($additional_data = false) {
