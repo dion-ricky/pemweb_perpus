@@ -45,7 +45,7 @@
                     <p class="input-label">New Password</p>
                     <input type="password" name="password" id="">
                     <p class="input-label">Confirm New Password</p>
-                    <input type="password" name="confirm-passowrd" id="">
+                    <input type="password" name="confirm-password" id="">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

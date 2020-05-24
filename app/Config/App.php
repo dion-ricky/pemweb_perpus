@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://35.209.43.244:80/';
+	public $baseURL = 'http://perpus.local:80/';
 
 	/*
 	|--------------------------------------------------------------------------

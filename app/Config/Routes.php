@@ -59,8 +59,6 @@ $routes->get('/auth/register', 'Auth::showRegister');
 $routes->post('/auth/register', 'Auth::register');
 $routes->get('/auth/logout', 'Auth::logout');
 
-// $routes->get('(:any)', 'Pages::view/$1');
-
 /**
  * --------------------------------------------------------------------
  * Additional Routing
